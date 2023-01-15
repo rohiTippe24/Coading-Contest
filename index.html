@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/index.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.rtl.min.css" integrity="sha384-WJUUqfoMmnfkBLne5uxXj+na/c7sesSJ32gI7GfCk4zO4GthUKhSEGyvQ839BC51" crossorigin="anonymous">
+  <title>CoadingContest</title>
+</head>
+<body>
+	<h1>CoadingContests</h1>
+	<div class="card"></div>
+  <div id = "cards" class="card-body">
+  </div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script>
+    let b = document.getElementById("cards");
+document.body.style.textAlign = "center";
+async function fun () {
+  let p = await fetch ("https://kontests.net/api/v1/all");
+  let res = await p.json();
+  console.log(res);
+  for (i in res) {
+  let newElem = document.createElement("div");
+  newElem.innerHTML = ` <br><div> <h5 class='card-title' style = "color : green">${res[i].name}</h5>URL  :  <a href = ${res[i].url}>${res[i].url}</a>`
+  +
+ ` <br><p>Start Time  :  ${res[i].start_time}</p>`+
+ ` <p>End Time  : ${res[i].end_time}</p>`+
+ ` <p>Duration  :  ${res[i].duration}</p>`+
+ ` <p style = "color : red">Site  :  ${res[i].site}</p>`+
+ ` <p>Status  :  ${res[i].status}</p>`+
+`<a href= ${res[i].url} class='btn btn-primary w-50'>Visit Page</a></div><hr><br>`
+newElem.class = "card";
+  b.append(newElem);
+  }
+}
+fun();
+  </script>
+</body>
+</html>
+
+<!-- created by Rohit Tippe -->
